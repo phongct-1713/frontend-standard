@@ -1,0 +1,44 @@
+//-------------------------------------------------------
+//- Components :: Buttons
+//-------------------------------------------------------
+
+mixin button-core(object, tag)
+  - var _tag;
+  case tag
+    when 'input'
+      - _tag = 'input'
+    when 'a'
+      - _tag = 'a'
+    default
+      - _tag = 'button'
+  #{_tag}.btn(
+    class= object.iconBefore ? 'btn--icon' : null
+    class= object.type ? `btn--${object.type}` : null
+    class= object.size ? `btn--${object.size}` : null
+    class= (object.isFull === true) ? 'btn-block' : null
+    class= (object.disabled === true) ? 'btn--disabled' : null
+    class= (object.notSelect === true) ? 'btn--not-select' : null
+    disabled= (object.disabled === true) ? true : false
+  )&attributes(attributes)
+    if (_tag !== 'input')
+      if object.iconBefore
+        +icon(object.iconBefore)
+      span.btn-text= object.text
+      if object.iconAfter
+        +icon(object.iconAfter)
+
+mixin button(object)
+  +button-core(object, 'button')(
+    type= object.kind ? object.kind : null
+  )&attributes(attributes)
+
+mixin button-link(object)
+  +button-core(object, 'a')(
+    href= object.href ? object.href : 'javascript:void(0)'
+  )&attributes(attributes)
+
+mixin button-input(object)
+  +button-core(object, 'input')(
+    type= object.kind ? object.kind : 'button'
+    value= object.value ? object.value : null
+  )&attributes(attributes)

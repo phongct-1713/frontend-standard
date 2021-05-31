@@ -1,0 +1,27 @@
+//------------------------------------------------------------------------
+//- Component :: Head
+//------------------------------------------------------------------------
+//- Assign info to head
+//- @params {object} data       - head tag data
+//- @params {string} data.title - head tag title
+//- @params {string} data.des   - head tag description
+//- @params {string} data.keys  - head tag keywords
+//------------------------------------------------------------------------
+
+mixin head(data)
+  -
+    var defaultData = {
+      title: 'Snowpack + Pug + Sass',
+      des: 'Snowpack + Pug + Sass',
+      key: 'Snowpack + Pug + Sass',
+    }
+
+    data = data || defaultData
+
+  title= data.title
+  meta(charset='utf-8')
+  meta(name='description' content= data.des ? data.des : data.title)
+  meta(name='keywords' content= data.key ? data.key : data.title)
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  link(rel='icon' href='../assets/images/favicon.ico')
+  link(rel='stylesheet' type='text/css' href='../assets/styles/main.css')

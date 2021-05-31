@@ -1,0 +1,18 @@
+//------------------------------------------------------------------------
+//- Layout :: Default
+//------------------------------------------------------------------------
+
+include ../components/_head
+
+doctype html
+html(lang='en')
+  head
+    block head
+      +head()
+
+  body
+    block body
+      p Hello World!
+
+    block scripts
+      script(type='module' src='../assets/javascripts/index.js')
